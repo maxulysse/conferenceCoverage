@@ -20,7 +20,6 @@ tweets <- unique(tweets)
 tweets$date <- format(tweets$created, format="%Y-%m-%d")
 
 d <- as.data.frame(table(tweets$screenName))
-d <- d[order(d$Freq, decreasing=TRUE), ]
 row.names(d)<-NULL
 names(d) <- c("User","Tweets")
 
