@@ -1,19 +1,22 @@
 #!/usr/bin/Rscript --vanilla
 #TODO usage #HASGTAG YYYY-MM-DD YYYYMM-DD
 
-library(twitteR)
-library(ggplot2)
+require(twitteR)
+require(ggplot2)
+require(tm)
+require(wordcloud)
 
 load("cred")
 registerTwitterOAuth(cred)
 
+hashtag="jobim2013"
+hashtag<-tolower(hashtag)
+
 tweets <- list()
 dates <- paste("2013-07-",01:06,sep="")
 for (i in 2:length(dates)) {
-	print(paste(dates[i-1], dates[i]))
-	tweets <- c(tweets, searchTwitter("#JOBIM2013", since=dates[i-1], until=dates[i], n=500))
+	tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=dates[i-1], until=dates[i], n=2000))
 }
- 
 tweets <- twListToDF(tweets)
 tweets <- unique(tweets)
 
@@ -28,12 +31,21 @@ ggplot(data=d, aes(reorder(User, Tweets), Tweets, fill=Tweets))+
 	coord_flip()+
 	xlab("User")+
 	ylab("Number of tweets")+
-	ggtitle("JOBIM 2013 top users")
-ggsave(file='jobim-user.png', width=7, height=7, dpi=100)
+	theme(legend.position="none")+
+	ggtitle(paste("#", toupper(hashtag), " Top Users", sep=""))
+ggsave(file=paste(hashtag, "user.png", sep="-"), width=8, height=8, dpi=100)
 
 ggplot(data=tweets, aes(x=created))+
 	geom_bar(aes(fill=..count..), binwidth=3600)+
 	scale_x_datetime("Date")+
 	scale_y_continuous("Frequency")+
-	ggtitle("#JOBIM2013 Tweet Frequency")
-ggsave(file='jobim-frequency.png', width=7, height=7, dpi=100)
+	theme(legend.position="none")+
+	ggtitle(paste("#", toupper(hashtag), " Tweet Frequency", sep=""))
+ggsave(file=paste(hashtag, "frequency.png", sep="-"), width=8, height=8, dpi=100)
+
+words <- as.data.frame(unlist(strsplit(tweets$text, " ")))
+corpus <- Corpus(DataframeSource(words))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, tolower)
+png(paste(hashtag, "wordcloud.png", sep="-"), w=500, h=500)
+wordcloud(corpus, scale=c(8, 0.5), min.freq=3, max.words=200, random.order=TRUE, rot.per=0.15)
