@@ -35,7 +35,7 @@ The cred file just created contain all your OAuth data
 So you just had to load it and you can authentify yourself with it.
 
 --CREDITS--
-Mostly copied and slightly adpated on Neil and Stephen twitter analysis
+Mostly copied and slightly adapted on Neil and Stephen twitter analysis
 https://gist.github.com/stephenturner/3132596
 https://gist.github.com/stephenturner/5579421
 https://github.com/neilfws/Twitter
