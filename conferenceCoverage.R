@@ -1,28 +1,27 @@
 #!/usr/bin/Rscript --vanilla
-# usage ./conferenceCoverage.R hashtag
+# usage ./conferenceCoverage.R hashtag YYYY-MM-DD DD
 
 require(twitteR)
 require(ggplot2)
 require(tm)
 require(wordcloud)
+require(scales)
 
 args <- commandArgs(TRUE)
-hashtag = args[1]
-hashtag=gsub("#", "", hashtag)
-hashtag<-tolower(hashtag)
+hashtag <- tolower(gsub("#", "", args[1]))
+beginDate <- as.Date(format(args[2], format="%Y-%m-%d"))
+conferenceLength <- as.integer(args[3])
 
 load("cred")
 registerTwitterOAuth(cred)
 
 tweets <- list()
-dates <- paste("2013-07-",01:06,sep="")
+dates <- seq(beginDate, len=conferenceLength, by="1 day")
 for (i in 2:length(dates)) {
-	tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=dates[i-1], until=dates[i], n=2000))
+	tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=2000))
 }
 tweets <- twListToDF(tweets)
 tweets <- unique(tweets)
-
-tweets$date <- format(tweets$created, format="%Y-%m-%d")
 
 d <- as.data.frame(table(tweets$screenName))
 row.names(d)<-NULL
@@ -37,11 +36,11 @@ ggplot(data=d, aes(reorder(User, Tweets), Tweets, fill=Tweets))+
 	ggtitle(paste("#", toupper(hashtag), " Top Users", sep=""))
 ggsave(file=paste(hashtag, "user.png", sep="-"), width=8, height=8, dpi=100)
 
-ggplot(data=tweets, aes(x=created))+
+ggplot(data=tweets, aes(created))+
 	geom_bar(aes(fill=..count..), binwidth=4800)+ #should be relative to the number of tweets and the number of days, but 4800 feels good for this one
-	scale_x_datetime("Date")+
+	scale_x_datetime("Date", breaks = date_breaks("12 hours"), labels = date_format("%b %d %HH"))+
 	scale_y_continuous("Frequency")+
-	theme(legend.position="none")+
+	theme(legend.position="none", axis.text.x = element_text(angle=45, hjust = 1, vjust = 1))+
 	ggtitle(paste("#", toupper(hashtag), " Tweet Frequency", sep=""))
 ggsave(file=paste(hashtag, "frequency.png", sep="-"), width=8, height=8, dpi=100)
 
