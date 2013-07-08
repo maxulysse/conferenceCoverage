@@ -13,7 +13,7 @@ hashtag="jobim2013"
 hashtag<-tolower(hashtag)
 
 tweets <- list()
-dates <- paste("2013-07-",01:06,sep="")
+dates <- paste("2013-07-",01:08,sep="")
 for (i in 2:length(dates)) {
 	tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=dates[i-1], until=dates[i], n=2000))
 }
