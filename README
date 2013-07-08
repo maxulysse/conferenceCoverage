@@ -6,6 +6,13 @@
 Get twitter conference coverage based on a hashtag over time with R and twitteR package
 Visualization made with ggplo2 package
 
+--USAGE--
+./conferenceCoverage.R #JOBIM2013 2013-06-30 8
+
+First argument is the Hastag for the conference (# is not required)
+Second argument is the date of the first day of the conference in YYYY-MM-DD format
+Third argument is the lenght of the conference
+
 --HELP--
 Help to get pass the OAuth with twitter
 
