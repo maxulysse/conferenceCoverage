@@ -3,21 +3,25 @@
 ##########################################
 
 --ABOUT--
-Get twitter conference coverage based on a hashtag over time with R and twitteR package
-Visualization made with ggplo2 package
+Get twitter conference coverage based on a hashtag over time with R twitteR package
+Visualization made with ggplot2, scales and wordcloud packages
 
 --USAGE--
-./conferenceCoverage.R #JOBIM2013 2013-06-30 8
+./conferenceCoverage.R HASTAG DATE(in YYYY-MM-DD format) LENGH(of conference in day)
 
-First argument is the Hastag for the conference (# is not required)
-Second argument is the date of the first day of the conference in YYYY-MM-DD format
-Third argument is the lenght of the conference
+--EXAMPLES--
+./conferenceCoverage.R #JOBIM2013 2013-06-30 8
+./conferenceCoverage.R #ISMBECCB 2013-07-18 9
+
+First argument is the Hastag for the conference (# is not required, but it works if you put it)
+Second argument is the first day of the conference in YYYY-MM-DD format
+Third argument is the lenght in day of the conference
 
 --HELP--
 Help to get pass the OAuth with twitter
 
 Log to your account on twitter.com (or create a new one).
-Go to : https://dev.twitter.com/apps
+Go to : https://dev.twitter.com/apps/
 Create a new app to get a consumerKey and a consumerSecret
 
 The following lines are meant to be used in a R console
@@ -43,6 +47,7 @@ So you just had to load it and you can authentify yourself with it.
 
 --CREDITS--
 Mostly copied and slightly adapted on Neil and Stephen twitter analysis
+https://github.com/neilfws/Twitter
+https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r
 https://gist.github.com/stephenturner/3132596
 https://gist.github.com/stephenturner/5579421
-https://github.com/neilfws/Twitter
