@@ -68,3 +68,5 @@ wordstable <- wordstable[order(wordstable$Freq, decreasing=T), ]
 png(paste(hashtag, "wordcloud.png", sep="-"), w=800, h=800)
 wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 2, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
 dev.off()
+
+write.table(tweets, file=(paste(hashtag, "tweets.txt", sep="-")))
