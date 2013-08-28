@@ -46,6 +46,7 @@ ggplot(data=dfTweets[rev(1:40), ], aes(reorder(User, Tweets), Tweets, fill=Tweet
 	theme(legend.position="none")+
 	ggtitle(paste("#", toupper(hashtag), " Top Users", sep=""))
 ggsave(file=paste(hashtag, "user.png", sep="-"), width=8, height=8, dpi=100)
+ggsave(file=paste(hashtag, "user.svg", sep="-"), width=8, height=8)
 
 # Plotting Tweet Frequency during the day
 ggplot(data=tweets, aes(created))+
@@ -55,6 +56,7 @@ ggplot(data=tweets, aes(created))+
 	theme(legend.position="none", axis.text.x = element_text(angle=45, hjust = 1, vjust = 1))+
 	ggtitle(paste("#", toupper(hashtag), " Tweet Frequency", sep=""))
 ggsave(file=paste(hashtag, "frequency.png", sep="-"), width=8, height=8, dpi=100)
+ggsave(file=paste(hashtag, "frequency.svg", sep="-"), width=8, height=8)
 
 # Plotting a wordcloud
 words <- unlist(strsplit(tweets$text, " "))
@@ -65,7 +67,12 @@ words <- words[!(words %in% stopwords("en"))]
 words <- words[!(words %in% c("mt", "rt", "via", "using", 0:9, hashtag))]
 wordstable <- as.data.frame(table(words))
 wordstable <- wordstable[order(wordstable$Freq, decreasing=T), ]
+
 png(paste(hashtag, "wordcloud.png", sep="-"), w=800, h=800)
+wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 2, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
+dev.off()
+
+svg(paste(hashtag, "wordcloud.svg", sep="-"), w=8, h=8)
 wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 2, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
 dev.off()
 
