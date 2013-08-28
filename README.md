@@ -38,17 +38,7 @@ Create a new app to get a consumerKey and a consumerSecret
 In a R console :  
 <code>
 	library(twitteR)  
-	cred <- OAuthFactory$new(consumerKey="YOURCONSUMERKEY",  
-</code>
-<pre>
-<code>
-		consumerSecret="YOURCONSUMERSECRET",  
-		requestURL="https://api.twitter.com/oauth/request_token",  
-		accessURL="https://api.twitter.com/oauth/access_token",  
-		authURL="http://api.twitter.com/oauth/authorize")  
-</code>
-</pre>
-<code>
+	cred <- OAuthFactory$new(consumerKey="YOURCONSUMERKEY", consumerSecret="YOURCONSUMERSECRET", requestURL="https://api.twitter.com/oauth/request_token", accessURL="https://api.twitter.com/oauth/access_token", authURL="http://api.twitter.com/oauth/authorize")  
 	cred$handshake()  
 	registerTwitterOAuth(cred)  
 	save(file="cred",cred)
