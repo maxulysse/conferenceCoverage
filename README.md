@@ -36,18 +36,17 @@ Go to : https://dev.twitter.com/apps/
 Create a new app to get a consumerKey and a consumerSecret
 
 In a R console :  
-<code>
-library(twitteR)  
-cred <- OAuthFactory$new(  
-consumerKey="YOURCONSUMERKEY",  
-consumerSecret="YOURCONSUMERSECRET",  
-requestURL="https://api.twitter.com/oauth/request_token",  
-accessURL="https://api.twitter.com/oauth/access_token",  
-authURL="http://api.twitter.com/oauth/authorize")  
-cred$handshake()  
-registerTwitterOAuth(cred)  
-save(file="cred",cred)
-</code>
+
+<code>library(twitteR)</code>  
+<code>cred <- OAuthFactory$new(</code>  
+<pre><code>consumerKey="YOURCONSUMERKEY",</code></pre>  
+<pre><code>consumerSecret="YOURCONSUMERSECRET",</code></pre>  
+<pre><code>requestURL="https://api.twitter.com/oauth/request_token",</code></pre>  
+<pre><code>accessURL="https://api.twitter.com/oauth/access_token",</code></pre>  
+<pre><code>authURL="http://api.twitter.com/oauth/authorize")</code></pre>  
+<code>cred$handshake()</code>  
+<code>registerTwitterOAuth(cred)</code>  
+<code>save(file="cred",cred)</code>  
 
 The cred file just created contain all your OAuth data.  
 So you just had to load it and you can authentify yourself with it.
@@ -56,7 +55,7 @@ CREDITS
 ---
 Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis  
 https://github.com/neilfws/Twitter  
-https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r  
+https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r
 
 Informations for installing twitteR and RCurl on Ubuntu :  
 http://freakonometrics.hypotheses.org/8256  
