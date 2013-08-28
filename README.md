@@ -39,14 +39,14 @@ In a R console :
 
 <code>library(twitteR)</code>  
 <code>cred <- OAuthFactory$new(</code>
-<pre><code>consumerKey="YOURCONSUMERKEY",</code></pre>
-<pre><code>consumerSecret="YOURCONSUMERSECRET",</code></pre>
-<pre><code>requestURL="https://api.twitter.com/oauth/request_token",</code></pre>
-<pre><code>accessURL="https://api.twitter.com/oauth/access_token",</code></pre>
-<pre><code>authURL="http://api.twitter.com/oauth/authorize")</code></pre>
+<code>consumerKey="YOURCONSUMERKEY",</code>  
+<code>consumerSecret="YOURCONSUMERSECRET",</code>  
+<code>requestURL="https://api.twitter.com/oauth/request_token",</code>  
+<code>accessURL="https://api.twitter.com/oauth/access_token",</code>  
+<code>authURL="http://api.twitter.com/oauth/authorize")</code>  
 <code>cred$handshake()</code>  
 <code>registerTwitterOAuth(cred)</code>  
-<code>save(file="cred",cred)</code>  
+<code>save(file="cred",cred)</code>
 
 The cred file just created contain all your OAuth data.  
 So you just had to load it and you can authentify yourself with it.
