@@ -57,14 +57,14 @@ So you just had to load it and you can authentify yourself with it.
 
 CHANGELOG
 ---
-1.0 :  
-add version number and changelog  
-beta :  
-add research saving  
-add SVG pictures  
-add help
-alpha :  
-project creation    
+Version 1.0 :  
+* add version number and changelog  
+Version beta :  
+* add research saving  
+* add SVG pictures  
+* add help  
+Version alpha :  
+* project creation    
 
 CREDITS
 ---
