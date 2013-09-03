@@ -59,10 +59,12 @@ CHANGELOG
 ---
 Version 1.0 :  
 * add version number and changelog  
+  
 Version beta :  
 * add research saving  
 * add SVG pictures  
 * add help  
+  
 Version alpha :  
 * project creation    
 
