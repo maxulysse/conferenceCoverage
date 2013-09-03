@@ -1,6 +1,10 @@
 conferenceCoverage
 ===
 
+VERSION
+---
+1.0
+
 ABOUT
 ---
 Get twitter conference coverage based on a hashtag over time with R twitteR package  
@@ -50,6 +54,17 @@ In a R console :
 
 The cred file just created contain all your OAuth data.  
 So you just had to load it and you can authentify yourself with it.
+
+CHANGELOG
+---
+1.0 :  
+add version number and changelog  
+beta :  
+add research saving  
+add SVG pictures  
+add help
+alpha :  
+project creation    
 
 CREDITS
 ---
