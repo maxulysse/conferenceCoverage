@@ -3,3 +3,5 @@ Rplots.pdf
 *.png
 *.svg
 *.txt
+.directory
+.httr-oauth

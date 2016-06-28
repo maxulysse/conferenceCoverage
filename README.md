@@ -1,78 +1,78 @@
-conferenceCoverage
-===
+# conferenceCoverage
 
-VERSION
----
-1.0
+## VERSION
+1.1
 
-ABOUT
----
-Get twitter conference coverage based on a hashtag over time with R twitteR package  
+## ABOUT
+Get twitter conference coverage based on a hashtag over time with R twitteR package.
+
 Visualization made with ggplot2, scales and wordcloud packages
 
-USAGE
----
-<code>./conferenceCoverage.R HASTAG DATE(in YYYY-MM-DD format) LENGH(of conference in day)</code>
+## USAGE
+```bash
+./conferenceCoverage.R HASTAG DATE(in YYYY-MM-DD format) LENGH(of conference in day)
+```
 
-EXAMPLES
----
-<code>./conferenceCoverage.R #JOBIM2013 2013-06-30 8</code>  
-<code>./conferenceCoverage.R #ISMBECCB 2013-07-18 9</code>
+- First argument is the Hastag for the conference (I would recommand without #)
+- Second argument is the first day of the conference in YYYY-MM-DD format
+- Third argument is the lenght in days of the conference
 
-First argument is the Hastag for the conference (# is not required, but it works if you put it)  
-Second argument is the first day of the conference in YYYY-MM-DD format  
-Third argument is the lenght in day of the conference
+## EXAMPLES
+```bash
+./conferenceCoverage.R JOBIM2016 2016-06-26 3
+```
 
-HELP
----
-How to install twitteR and RCurl package on Ubuntu  
+## HELP
+### How to install twitteR and RCurl package on Ubuntu  
 In Shell :  
-<code>sudo apt-get install libcurl4-gnutls-dev</code>
+```bash
+sudo apt-get install r-base r-base-dev libxml2-dev libcurl4-openssl-dev curl libcairo-dev
+```
+If problems with svglite, check (github.com)[https://github.com/hadley/svglite]
 
-In R console :  
-<code>install.packages("RCurl")</code>  
-<code>install.packages("twitteR")</code>
+In R console :
+```R
+install.packages("devtools", "RCurl", "twitteR", "ggplot2", "tm", "scales", "wordcloud")
+```
 
-How to get pass the OAuth with twitteR
+### How to get pass the twitter credentials working with twitteR
+- Log to your account on twitter.com (or create a new one)
+- Go to (dev.twitter.com)[https://dev.twitter.com/apps/]
+- Create an app to get a consumerKey and a consumerSecret
 
-Log to your account on twitter.com (or create a new one).  
-Go to : https://dev.twitter.com/apps/  
-Create a new app to get a consumerKey and a consumerSecret
+In a R console :
+```
+library(twitteR)  
+consumer_key <- 'YOURCONSUMERKEY'
+consumer_secret <- 'YOURCONSUMERSECRET'
+access_token <- 'YOURACCESSTOKEN'
+access_secret <- 'YOURACCESSSECRET'
+save(list = c("consumer_key", "consumer_secret", "access_token", "access_secret"), file="cred")
+```
 
-In a R console :  
+The cred file just created contain all your credentials for Twitter, so don't share it on Github ;-). Now you just had to load it and you can authentify yourself with it.
 
-<code>library(twitteR)</code>  
-<code>cred <- OAuthFactory$new(</code>  
-<code>consumerKey="YOURCONSUMERKEY",</code>  
-<code>consumerSecret="YOURCONSUMERSECRET",</code>  
-<code>requestURL="https://api.twitter.com/oauth/request_token",</code>  
-<code>accessURL="https://api.twitter.com/oauth/access_token",</code>  
-<code>authURL="http://api.twitter.com/oauth/authorize")</code>  
-<code>cred$handshake()</code>  
-<code>registerTwitterOAuth(cred)</code>  
-<code>save(file="cred",cred)</code>
+## CHANGELOG
+### Version 1.1:
+* update Twitter logging due to changes in API
+* update script
+* update help
 
-The cred file just created contain all your OAuth data.  
-So you just had to load it and you can authentify yourself with it.
+### Version 1.0:
+* add version number and changelog
 
-CHANGELOG
----
-Version 1.0 :  
-* add version number and changelog  
-  
-Version beta :  
-* add research saving  
-* add SVG pictures  
-* add help  
-  
-Version alpha :  
-* project creation    
+### Version beta:
+* add research saving
+* add SVG pictures
+* add help
 
-CREDITS
----
-Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis  
-https://github.com/neilfws/Twitter  
-https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r
+### Version alpha:
+* project creation
 
-Informations for installing twitteR and RCurl on Ubuntu :  
-http://freakonometrics.hypotheses.org/8256  
+## CREDITS
+Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis:
+- (github.com)[https://github.com/neilfws/Twitter]
+- (github.com)[https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r]
+
+Informations for installing twitteR and RCurl on Ubuntu:
+- (freakonometrics)[http://freakonometrics.hypotheses.org/8256]
