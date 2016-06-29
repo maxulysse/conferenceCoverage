@@ -28,7 +28,7 @@ In Shell :
 ```bash
 sudo apt-get install r-base r-base-dev libxml2-dev libcurl4-openssl-dev curl libcairo-dev
 ```
-If problems with svglite, check (github.com)[https://github.com/hadley/svglite]
+If problems with svglite, check [github.com](https://github.com/hadley/svglite)
 
 In R console :
 ```R
@@ -37,7 +37,7 @@ install.packages("devtools", "RCurl", "twitteR", "ggplot2", "tm", "scales", "wor
 
 ### How to get pass the twitter credentials working with twitteR
 - Log to your account on twitter.com (or create a new one)
-- Go to (dev.twitter.com)[https://dev.twitter.com/apps/]
+- Go to [dev.twitter.com](https://dev.twitter.com/apps/)
 - Create an app to get a consumerKey and a consumerSecret
 
 In a R console :
@@ -71,8 +71,8 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 
 ## CREDITS
 Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis:
-- (github.com)[https://github.com/neilfws/Twitter]
-- (github.com)[https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r]
+- [github.com](https://github.com/neilfws/Twitter)
+- [github.com](https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r)
 
 Informations for installing twitteR and RCurl on Ubuntu:
-- (freakonometrics)[http://freakonometrics.hypotheses.org/8256]
+- [freakonometrics](http://freakonometrics.hypotheses.org/8256)
