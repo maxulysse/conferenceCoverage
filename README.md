@@ -10,7 +10,7 @@ Visualization made with ggplot2, scales and wordcloud packages
 
 ## USAGE
 ```bash
-./conferenceCoverage.R HASTAG DATE(in YYYY-MM-DD format) LENGH(of conference in day)
+./conferenceCoverage.R -a HASTAG -d DATE(YYYY-MM-DD) -l LENGH(in day)
 ```
 
 - First argument is the Hastag for the conference (I would recommand without #)
@@ -19,7 +19,8 @@ Visualization made with ggplot2, scales and wordcloud packages
 
 ## EXAMPLES
 ```bash
-./conferenceCoverage.R JOBIM2016 2016-06-26 4
+./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 4
+./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 4 -f 5 -u 25 -t 1000
 ```
 
 ## HELP
