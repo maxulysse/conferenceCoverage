@@ -1,7 +1,7 @@
 # conferenceCoverage
 
 ## VERSION
-1.1
+1.1.1
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with R twitteR package.
@@ -19,7 +19,7 @@ Visualization made with ggplot2, scales and wordcloud packages
 
 ## EXAMPLES
 ```bash
-./conferenceCoverage.R JOBIM2016 2016-06-26 3
+./conferenceCoverage.R JOBIM2016 2016-06-26 4
 ```
 
 ## HELP
@@ -28,7 +28,7 @@ In Shell :
 ```bash
 sudo apt-get install r-base r-base-dev libxml2-dev libcurl4-openssl-dev curl libcairo-dev
 ```
-If problems with svglite, check [github.com](https://github.com/hadley/svglite)
+If problems with svglite, check [github.com/hadley](https://github.com/hadley/svglite)
 
 In R console :
 ```R
@@ -52,7 +52,18 @@ save(list = c("consumer_key", "consumer_secret", "access_token", "access_secret"
 
 The cred file just created contain all your credentials for Twitter, so don't share it on Github ;-). Now you just had to load it and you can authentify yourself with it.
 
+## TO DO
+* Add more stuff:
+- Better argument control
+- Max number of tweets per day requested to twitter API should be optionnal
+- Min number of tweets for top user graph should be optionnal
+- Number of users on the top user graph should be optionnal
+- Color theme should be optionnal
+
 ## CHANGELOG
+### Version 1.1.1:
+* Add a min number of tweets for top user graph
+
 ### Version 1.1:
 * update Twitter logging due to changes in API
 * update script
@@ -71,8 +82,8 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 
 ## CREDITS
 Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis:
-- [github.com](https://github.com/neilfws/Twitter)
-- [github.com](https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r)
+- [github.com/neilfws](https://github.com/neilfws/Twitter)
+- [github.com/stephenturner](https://github.com/stephenturner/twitterchive/blob/master/analysis/twitterchive.r)
 
 Informations for installing twitteR and RCurl on Ubuntu:
 - [freakonometrics](http://freakonometrics.hypotheses.org/8256)

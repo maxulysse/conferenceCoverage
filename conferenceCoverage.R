@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 # usage ./conferenceCoverage.R hashtag YYYY-MM-DD DD
-# Mostly copied and slightly adapted from Neil and Stephen twitter analysis
 
 arguments <- commandArgs(trailingOnly = TRUE)
 
@@ -25,8 +24,9 @@ tweets <- list()
 dates <- seq.Date(beginDate, by="days", length.out=confLength)
 
 # Recovering tweets, should be done as soon as possible after the end of the conference, it's very hard to get tweets after they get 1 week old
-for (i in 2:length(dates)) {tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=500))}
-# 2000 Is a big enough number for tweets per day for a conf as big as ISMBECCB, should try other value depending on API limits
+# 1500 should be a big enough number for tweets per day for a conference.
+# Should be an argument
+for (i in 2:length(dates)) {tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=1500))}
 
 tweets <- twListToDF(tweets)
 tweets <- unique(tweets)
@@ -34,9 +34,13 @@ tweets <- unique(tweets)
 dfTweets <- as.data.frame(table(tweets$screenName))
 names(dfTweets) <- c("User", "Tweets")
 
+# Filtering out people tweeting less than 3 times
+# Should be an argument
+dfTweets <- subset(dfTweets, Tweets>3)
+
 # Plotting top 40 users (or less if there is less than 40 users)
 # 40 Should be enough considering that most people only tweet once
-# Should try to filter out people tweeting only once
+# Should be an argument
 ggplot(data=dfTweets[rev(1:min(nrow(dfTweets),40)), ], aes(reorder(User, Tweets), Tweets, fill=Tweets))+
 	geom_bar(stat="identity")+
 	coord_flip()+
