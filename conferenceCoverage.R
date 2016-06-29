@@ -1,19 +1,46 @@
 #!/usr/bin/Rscript
-# usage ./conferenceCoverage.R hashtag YYYY-MM-DD DD
 
-arguments <- commandArgs(trailingOnly = TRUE)
+# Loading packages
+suppressPackageStartupMessages(require(optparse))
+suppressPackageStartupMessages(require(twitteR))
+suppressPackageStartupMessages(require(tm))
+suppressPackageStartupMessages(require(ggplot2))
+suppressPackageStartupMessages(require(scales))
+suppressPackageStartupMessages(require(wordcloud))
 
-hashtag <- tolower(arguments[1])
-beginDate <- as.Date(arguments[2], format="%Y-%m-%d")
-confLength <- as.numeric(arguments[3])
+# Handling arguments
+option_list <- list(
+make_option(c("-a", "--hashtag"), type="character", dest="hashtag",
+	help="Hashtag of the event (without the #)"),
+make_option(c("-d", "--date"), type="character", dest="beginDate", metavar="YYYY-MM-DD",
+	help="Beginning date of the event"),
+make_option(c("-l", "--lenght"), type="integer", dest="confLength",
+	help="Length of the event"),
+make_option(c("-f", "--minFilter"), type="integer", dest="minFilter", default=3, #Since most people tweet only a few time you might want to remove some
+	help="Minimun of tweets to keep a userin the top user graph [default %default]"),
+make_option(c("-u", "--maxUsers"), type="integer", dest="maxUsers", default=40, #Could be more if you have more people tweeting, but the top 40 or 50 users is nice enough
+	help="Maximum number of users for the top user graph [default %default]"),
+make_option(c("-t", "--maxTweets"), type="integer", dest="maxTweets", default=1500, #1500 should be a big enough number for tweets per day for a conference.
+	help="Maximum number of tweets per day required to the API [default %default]"),
+make_option(c("-v", "--version"), action="store_true", dest="version",
+	help="Print version number and exit")
+)
 
-#Loading packages
-require(twitteR)
-require(tm)
-require(ggplot2)
-require(scales)
-require(wordcloud)
+opt <- parse_args(OptionParser(usage = "usage: %prog -a HASHTAG -d BEGINDATE -l CONFLENGTH [options]",option_list=option_list))
 
+if (!is.null(opt$version)) {
+	stop("conferenceCoverage version 1.2")
+}
+
+# Handling empty mandatory arguments
+if (is.null(opt$hashtag) || is.null(opt$beginDate) || is.null(opt$confLength) ) {
+	stop("hashtag, beginDate and confLength parameters must be provided. See script usage (--help)")
+}
+
+hashtag <- tolower(opt$hashtag)
+beginDate <- as.Date(opt$beginDate, format="%Y-%m-%d")
+
+# Get twitter credentials
 load("cred")
 setup_twitter_oauth(consumer_key,
 					consumer_secret,
@@ -21,12 +48,10 @@ setup_twitter_oauth(consumer_key,
 					access_secret)
 
 tweets <- list()
-dates <- seq.Date(beginDate, by="days", length.out=confLength)
+dates <- seq.Date(beginDate, by="days", length.out=opt$confLength)
 
 # Recovering tweets, should be done as soon as possible after the end of the conference, it's very hard to get tweets after they get 1 week old
-# 1500 should be a big enough number for tweets per day for a conference.
-# Should be an argument
-for (i in 2:length(dates)) {tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=1500))}
+for (i in 2:length(dates)) {tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=opt$maxTweets))}
 
 tweets <- twListToDF(tweets)
 tweets <- unique(tweets)
@@ -34,14 +59,11 @@ tweets <- unique(tweets)
 dfTweets <- as.data.frame(table(tweets$screenName))
 names(dfTweets) <- c("User", "Tweets")
 
-# Filtering out people tweeting less than 3 times
-# Should be an argument
-dfTweets <- subset(dfTweets, Tweets>3)
+# Filtering out people tweeting less than opt$minFilter times
+dfTweets <- subset(dfTweets, Tweets>opt$minFilter)
 
-# Plotting top 40 users (or less if there is less than 40 users)
-# 40 Should be enough considering that most people only tweet once
-# Should be an argument
-ggplot(data=dfTweets[rev(1:min(nrow(dfTweets),40)), ], aes(reorder(User, Tweets), Tweets, fill=Tweets))+
+# Plotting top opt$maxUsers users (or less if there is less than opt$maxUsers users)
+ggplot(data=dfTweets[rev(1:min(nrow(dfTweets),opt$maxUsers)), ], aes(reorder(User, Tweets), Tweets, fill=Tweets))+
 	geom_bar(stat="identity")+
 	coord_flip()+
 	xlab("User")+
@@ -53,7 +75,7 @@ ggsave(file=paste(hashtag, "user.svg", sep="-"), width=8, height=8)
 
 write.table(dfTweets, file=(paste(hashtag, "users.txt", sep="-")))
 
-# Plotting Tweet Frequency during the days
+# Plotting Tweet Frequency during the days of the event
 ggplot(data=tweets, aes(created))+
 	geom_histogram(aes(fill=..count..), binwidth=4800)+
 	scale_x_datetime("Date", breaks = date_breaks("12 hours"), labels = date_format("%b %d %HH"))+

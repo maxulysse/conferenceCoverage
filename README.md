@@ -1,7 +1,7 @@
 # conferenceCoverage
 
 ## VERSION
-1.1.1
+1.2
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with R twitteR package.
@@ -54,13 +54,17 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 
 ## TO DO
 * Add more stuff:
-- Better argument control
-- Max number of tweets per day requested to twitter API should be optionnal
-- Min number of tweets for top user graph should be optionnal
-- Number of users on the top user graph should be optionnal
-- Color theme should be optionnal
+- Add license
+- Choice of color theme
 
 ## CHANGELOG
+### Version 1.2:
+* Add optparse for handling arguments
+* No longer positionnal arguments
+* Add max number of tweets per day requested to twitter API as an option
+* Add min number of tweets for top user graph as an option
+* Add number of users on the top user graph as an option
+
 ### Version 1.1.1:
 * Add a min number of tweets for top user graph
 
