@@ -102,16 +102,16 @@ words <- tolower(words)
 words <- words[!(words %in% stopwords("en"))]
 words <- words[!(words %in% stopwords("fr"))]
 # remove RTs, MTs, via, single digits and hashtag
-words <- words[!(words %in% c("mt", "rt", "via", "using", "cc", 0:9, hashtag))]
+words <- words[!(words %in% c("mt", "rt", "via", "cc", "using", 0:9, hashtag))]
 wordstable <- as.data.frame(table(words))
 wordstable <- wordstable[order(wordstable$Freq, decreasing=T), ]
 
 png(paste(hashtag, "wordcloud.png", sep="-"), w=800, h=800)
-wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 2, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
+wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 8, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
 dev.off()
 
 svg(paste(hashtag, "wordcloud.svg", sep="-"), w=8, h=8)
-wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 2, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
+wordcloud(wordstable$words, wordstable$Freq, scale = c(6, .2), min.freq = 8, max.words = 500, random.order = FALSE, rot.per = .15, colors = brewer.pal(9, "Blues"))
 dev.off()
 
 write.table(tweets, file=(paste(hashtag, "tweets.txt", sep="-")))
