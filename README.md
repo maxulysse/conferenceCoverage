@@ -1,30 +1,42 @@
 # conferenceCoverage
 
-## VERSION
-1.2
-
 ## ABOUT
-Get twitter conference coverage based on a hashtag over time with R twitteR package.
+Get twitter conference coverage based on a hashtag over time with [R](https://www.r-project.org/) [twitteR](https://github.com/geoffjentry/twitteR) package.
 
-Visualization made with ggplot2, scales and wordcloud packages
+Visualization made with [ggplot2](http://ggplot2.org/), [scales](https://github.com/hadley/scales/) and [wordcloud](https://cran.r-project.org/web/packages/wordcloud/index.html) packages
+
+## VERSION
+1.3
+
+## LICENSE
+```-----------------------------------------------------------------------------
+"THE NOT-A-BEER-WARE LICENSE" (Revision 42):
+<max@ithake.eu> wrote this file.  As long as you retain this notice you
+can do whatever you want with this stuff.  If we meet some day, and you think
+this stuff is worth it, you can buy me not a beer in return.  Maxime
+-----------------------------------------------------------------------------
+```
 
 ## USAGE
 ```bash
-./conferenceCoverage.R -a HASTAG -d DATE(YYYY-MM-DD) -l LENGH(in day)
+./conferenceCoverage.R -a HASTAG -d DATE -l LENGTH [-f MINFILTER -u MAXUSERS -t MAXTWEETS]
 ```
 
-- First argument is the Hastag for the conference (I would recommand without #)
-- Second argument is the first day of the conference in YYYY-MM-DD format
-- Third argument is the lenght in days of the conference
+- HASTAG is the hastag for the conference (without #)
+- DATE is the first day of the conference in YYYY-MM-DD format
+- LENGTH is the length in days of the conference
+- MINFILTER is the minimum number of tweets/user in the top user graph
+- MAXUSERS is the maximum number of users in the top user graph
+- MAXTWEETS is the maximum number of tweet/day required by the API
 
 ## EXAMPLES
 ```bash
-./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 4
-./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 4 -f 5 -u 25 -t 1000
+./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 5
+./conferenceCoverage.R -a JOBIM2016 -d 2016-06-26 -l 5 -f 5 -u 25 -t 1000
 ```
 
 ## HELP
-### How to install twitteR and RCurl package on Ubuntu  
+### How to install twitteR and RCurl package on Ubuntu
 In Shell :  
 ```bash
 sudo apt-get install r-base r-base-dev libxml2-dev libcurl4-openssl-dev curl libcairo-dev
@@ -33,7 +45,7 @@ If problems with svglite, check [github.com/hadley](https://github.com/hadley/sv
 
 In R console :
 ```R
-install.packages("devtools", "RCurl", "twitteR", "ggplot2", "tm", "scales", "wordcloud")
+install.packages("devtools", "RCurl", "twitteR", "ggplot2", "tm", "scales", "wordcloud", "optparse")
 ```
 
 ### How to get pass the twitter credentials working with twitteR
@@ -55,12 +67,14 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 
 ## TO DO
 * Add more stuff:
-- Add license
-- Choice of color theme
+    - Choice of color theme
 
 ## CHANGELOG
+### Version 1.3:
+* Add NOT-A-BEER-WARE LICENSE
+
 ### Version 1.2:
-* Add optparse for handling arguments
+* Add [optparse](https://github.com/trevorld/optparse) for handling arguments
 * No longer positionnal arguments
 * Add max number of tweets per day requested to twitter API as an option
 * Add min number of tweets for top user graph as an option
@@ -77,12 +91,12 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 ### Version 1.0:
 * add version number and changelog
 
-### Version beta:
+### Version β:
 * add research saving
 * add SVG pictures
 * add help
 
-### Version alpha:
+### Version α:
 * project creation
 
 ## CREDITS

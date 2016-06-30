@@ -1,5 +1,12 @@
 #!/usr/bin/Rscript
 
+# -----------------------------------------------------------------------------
+# "THE NOT-A-BEER-WARE LICENSE" (Revision 42):
+# <max@ithake.eu> wrote this file.  As long as you retain this notice you
+# can do whatever you want with this stuff.  If we meet some day, and you think
+# this stuff is worth it, you can buy me not a beer in return.  Maxime
+# -----------------------------------------------------------------------------
+
 # Loading packages
 suppressPackageStartupMessages(require(optparse))
 suppressPackageStartupMessages(require(twitteR))
@@ -16,11 +23,14 @@ make_option(c("-d", "--date"), type="character", dest="beginDate", metavar="YYYY
 	help="Beginning date of the event"),
 make_option(c("-l", "--lenght"), type="integer", dest="confLength",
 	help="Length of the event"),
-make_option(c("-f", "--minFilter"), type="integer", dest="minFilter", default=3, #Since most people tweet only a few time you might want to remove some
+	# Since most people tweet only a few time you might want to filter out some
+make_option(c("-f", "--minFilter"), type="integer", dest="minFilter", default=3,
 	help="Minimun of tweets to keep a userin the top user graph [default %default]"),
-make_option(c("-u", "--maxUsers"), type="integer", dest="maxUsers", default=40, #Could be more if you have more people tweeting, but the top 40 or 50 users is nice enough
+	# Could be more if you have more people tweeting, but the top 40 or 50 users is nice enough
+make_option(c("-u", "--maxUsers"), type="integer", dest="maxUsers", default=40,
 	help="Maximum number of users for the top user graph [default %default]"),
-make_option(c("-t", "--maxTweets"), type="integer", dest="maxTweets", default=1500, #1500 should be a big enough number for tweets per day for a conference.
+	# 1500 should be a big enough number for tweets per day for a conference.
+make_option(c("-t", "--maxTweets"), type="integer", dest="maxTweets", default=1500,
 	help="Maximum number of tweets per day required to the API [default %default]"),
 make_option(c("-v", "--version"), action="store_true", dest="version",
 	help="Print version number and exit")
@@ -29,7 +39,7 @@ make_option(c("-v", "--version"), action="store_true", dest="version",
 opt <- parse_args(OptionParser(usage = "usage: %prog -a HASHTAG -d BEGINDATE -l CONFLENGTH [options]",option_list=option_list))
 
 if (!is.null(opt$version)) {
-	stop("conferenceCoverage version 1.2")
+	stop("conferenceCoverage version 1.3")
 }
 
 # Handling empty mandatory arguments
@@ -50,7 +60,7 @@ setup_twitter_oauth(consumer_key,
 tweets <- list()
 dates <- seq.Date(beginDate, by="days", length.out=opt$confLength)
 
-# Recovering tweets, should be done as soon as possible after the end of the conference, it's very hard to get tweets after they get 1 week old
+# Recovering tweets, should be done as soon as possible after the end of the conference, it's very hard to get tweets after some time
 for (i in 2:length(dates)) {tweets <- c(tweets, searchTwitter(paste("#", hashtag, sep=""), since=paste(dates[i-1]), until=paste(dates[i]), n=opt$maxTweets))}
 
 tweets <- twListToDF(tweets)
