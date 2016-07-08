@@ -1,4 +1,6 @@
-# conferenceCoverage 1.3
+# conferenceCoverage 1.3.5
+
+![conferenceCoverage Logo](http://i.imgur.com/TpCB7HW.png)
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with [R](https://www.r-project.org/) [twitteR](https://github.com/geoffjentry/twitteR) package.
@@ -65,6 +67,9 @@ The cred file just created contain all your credentials for Twitter, so don't sh
     - Choice of color theme
 
 ## CHANGELOG
+### Version 1.3.5:
+* Add a logo
+
 ### Version 1.3:
 * Add NOT-A-BEER-WARE LICENSE
 
