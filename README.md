@@ -1,6 +1,4 @@
-# conferenceCoverage 1.3.5
-
- <img alt="conferenceCoverage Logo" src="http://i.imgur.com/TpCB7HW.png" width=72 height=50 />
+# conferenceCoverage <img alt="conferenceCoverage Logo" src="http://i.imgur.com/TpCB7HW.png" height=2em /> 1.3.5
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with [R](https://www.r-project.org/) [twitteR](https://github.com/geoffjentry/twitteR) package.
