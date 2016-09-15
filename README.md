@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/MaxUlysse/conferenceCoverage.png?label=ready&title=Ready)](https://waffle.io/MaxUlysse/conferenceCoverage)
 # conferenceCoverage <img alt="conferenceCoverage Logo" src="http://i.imgur.com/TpCB7HW.png" height=50 /> 1.3.5
 
 ## ABOUT
