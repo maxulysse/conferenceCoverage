@@ -98,12 +98,6 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 ### Version α:
 * project creation
 
-## LICENSE
----
-"THE NOT-A-BEER-WARE LICENSE" (Revision 42): [@MaxUlysse](https://github.com/MaxUlysse) wrote this file.  As long as you retain this notice you can do whatever you want with this stuff.  If we meet some day, and you think this stuff is worth it, you can buy me not a beer in return.
-
----
-
 ## NOTES
 Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis:
 - [github.com/neilfws](https://github.com/neilfws/Twitter)
