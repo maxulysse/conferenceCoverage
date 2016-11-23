@@ -1,5 +1,5 @@
-[![Stories in Ready](https://badge.waffle.io/MaxUlysse/conferenceCoverage.png?label=ready&title=Ready)](https://waffle.io/MaxUlysse/conferenceCoverage)
 # conferenceCoverage <img alt="conferenceCoverage Logo" src="http://i.imgur.com/TpCB7HW.png" height=50 /> 1.3.5
+[![works badge](https://cdn.rawgit.com/nikku/works-on-my-machine/v0.2.0/badge.svg)](https://github.com/nikku/works-on-my-machine)
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with [R](https://www.r-project.org/) [twitteR](https://github.com/geoffjentry/twitteR) package.
