@@ -1,5 +1,6 @@
-# conferenceCoverage <img alt="conferenceCoverage Logo" src="http://i.imgur.com/TpCB7HW.png" height=50 /> 1.3.5
-[![works badge](https://cdn.rawgit.com/nikku/works-on-my-machine/v0.2.0/badge.svg)](https://github.com/nikku/works-on-my-machine)
+# ![](doc/ConfCovLogo.png "conferenceCoverage") conferenceCoverage
+
+[![Version][version-badge]][version-link] [![Licence][licence-badge]][licence-link][![works on my machine][works-badge]][works-link]
 
 ## ABOUT
 Get twitter conference coverage based on a hashtag over time with [R](https://www.r-project.org/) [twitteR](https://github.com/geoffjentry/twitteR) package.
@@ -64,39 +65,7 @@ The cred file just created contain all your credentials for Twitter, so don't sh
 ## TO DO
 * Add more stuff:
     - Choice of color theme
-
-## CHANGELOG
-### Version 1.3.5:
-* Add a logo
-
-### Version 1.3:
-* Add NOT-A-BEER-WARE LICENSE
-
-### Version 1.2:
-* Add [optparse](https://github.com/trevorld/optparse) for handling arguments
-* No longer positionnal arguments
-* Add max number of tweets per day requested to twitter API as an option
-* Add min number of tweets for top user graph as an option
-* Add number of users on the top user graph as an option
-
-### Version 1.1.1:
-* Add a min number of tweets for top user graph
-
-### Version 1.1:
-* update Twitter logging due to changes in API
-* update script
-* update help
-
-### Version 1.0:
-* add version number and changelog
-
-### Version β:
-* add research saving
-* add SVG pictures
-* add help
-
-### Version α:
-* project creation
+    - Shiny
 
 ## NOTES
 Script is mostly copied and slightly adapted on Neil and Stephen twitter analysis:
@@ -105,3 +74,10 @@ Script is mostly copied and slightly adapted on Neil and Stephen twitter analysi
 
 Informations for installing twitteR and RCurl on Ubuntu:
 - [freakonometrics](http://freakonometrics.hypotheses.org/8256)
+
+[licence-badge]: https://img.shields.io/github/license/MaxUlysse/conferenceCoverage.svg
+[licence-link]: https://github.com/MaxUlysse/conferenceCoverage/blob/master/LICENSE
+[version-badge]: https://img.shields.io/github/release/MaxUlysse/conferenceCoverage.svg
+[version-link]: https://github.com/MaxUlysse/conferenceCoverage/releases/releases/latest
+[works-badge]: https://img.shields.io/badge/works-on_my_machine-brightgreen.svg
+[works-link]: https://github.com/nikku/works-on-my-machine
